@@ -3,6 +3,7 @@ import moment from "moment";
 import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 
 export default function PostDetail({ post }) {
+  console.log(post.content.raw.children);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
@@ -55,6 +56,29 @@ export default function PostDetail({ post }) {
             src={obj.src}
           />
         );
+      case "iframe":
+        return (
+          <iframe
+            src={obj.url}
+            width={obj.width}
+            height={obj.height}
+            // title="W3Schools Free Online Web Tutorials"
+          ></iframe>
+        );
+      case "block-quote":
+        return (
+          <blockquote cite="http://www.worldwildlife.org/who/index.html">
+            {obj.children.map((quote) => quote.text)}
+          </blockquote>
+        );
+      case "code-block":
+        return (
+          <pre class="max-w-full p-2 whitespace-pre-wrap">
+            <code>{obj.children.map((code) => code.obj)}</code>
+          </pre>
+        );
+      case "link":
+        return <a href={obj.href}>{obj.text}</a>;
       default:
         return modifiedText;
     }
