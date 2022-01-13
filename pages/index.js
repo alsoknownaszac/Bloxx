@@ -7,7 +7,7 @@ export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
-        <title>Patrum Vox blog exploring creativity with elegance</title>
+        <title>Partum Vox blog exploring creativity with elegance</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FeaturedPosts />
