@@ -16,22 +16,27 @@ export default function Header() {
 
   return (
     <div className="container mx-auto px-10 mb-8">
-      <div className="border-b w-full inline-block border-blue-300 py-8">
+      <div className="grid grid-cols-6 rounded-lg py-6 items-center bg-[#F2F2F2]">
         <div className="md:float-left block">
           <Link href="/">
-            <span className="cursor-pointer font-bold text-4xl text-white">
+            <span className="cursor-pointer font-bold text-4xl ">
               NoobNotes
             </span>
           </Link>
         </div>
-        <div className="hidden md:float-left md:contents">
+        <div
+          className={`col-span-4 hidden mx-auto md:columns-${categories.length} items-center`}
+        >
           {categories.map((category) => (
             <Link key={category.slug} href={`/category/${category.slug}`}>
-              <span className="md:float-right mt-2 align-middle text-yellow-50 ml-4 font-semibold cursor-pointer">
+              <span className=" text-center font-semibold cursor-pointer">
                 {category.name}
               </span>
             </Link>
           ))}
+        </div>
+        <div className="col-span-1 flex items-center md:float-right">
+          NoobNotes
         </div>
       </div>
     </div>
