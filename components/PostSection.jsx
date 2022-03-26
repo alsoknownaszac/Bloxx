@@ -14,7 +14,7 @@ export default function PostSection({ latest, recent }) {
   }, []);
 
   return (
-    <div className={`mb-28 ${recent ? "md:-mx-10" : null} `}>
+    <div className={`mb-20 ${recent ? "md:-mx-10" : null} `}>
       <h1 className="text-[3rem] mb-10">
         {latest ? "Latest" : recent ? "Recent" : null}
       </h1>
@@ -41,7 +41,12 @@ export default function PostSection({ latest, recent }) {
         } `}
       >
         {posts.map((post, index) => (
-          <PostCard post={post.node} key={post.title} />
+          <PostCard
+            post={post.node}
+            key={post.title}
+            latest={latest}
+            recent={recent}
+          />
         ))}
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="sticky z-50 top-[15rem] transform translate-y-[-10rem] container mx-auto px-10">
+    <div className="sticky z-50 top-[15rem] transform translate-y-[-8rem] container mx-auto px-10">
       <div className="sticky grid grid-cols-12 rounded-lg p-5 items-center bg-[rgba(242,242,242,1)]">
         <div className="md:float-left block col-span-1">
           <Link href="/">

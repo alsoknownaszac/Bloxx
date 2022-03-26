@@ -5,15 +5,21 @@ import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 import { toUpperCase } from "../helper/toUpperCase";
 import { toTitleCase } from "../helper/toTitleCase";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, latest, recent }) {
   console.log(post);
   return (
-    <div className="rounded-lg p-0 ">
-      <div className="relative overflow-hidden shadow-md pb-[25rem]">
+    <div className="p-0">
+      <div
+        className={`relative overflow-hidden shadow-md  ${
+          latest ? "pb-[30rem]" : recent ? "pb-[20rem]" : null
+        } `}
+      >
         <img
           src={post.featuredImage.url}
           alt={post.title}
-          className="object-top absolute h-[25rem] w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+          className={`object-top absolute ${
+            latest ? "h-[30rem]" : recent ? "h-[20rem]" : null
+          } w-full object-cover shadow-lg rounded-t-lg lg:rounded-md`}
         />
       </div>
       <div className="p-2 py-8">
@@ -21,7 +27,7 @@ export default function PostCard({ post }) {
           post.categories.map((category) => (
             <span
               key={category.slug}
-              className="p-1 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
+              className="p-2 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
             </span>
@@ -48,7 +54,9 @@ export default function PostCard({ post }) {
           <div className="font-medium text-gray-700 flex items-center  ">
             <CalenderIcon className="mr-4" />
             <span className="text-[1.25rem]">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
+              {moment(post.createdAt).format(
+                latest ? "MMM DD, YYYY" : recent ? "MMM DD" : null
+              )}
             </span>
           </div>
         </div>
