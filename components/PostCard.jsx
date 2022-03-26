@@ -7,7 +7,7 @@ import { toUpperCase } from "../helper/toUpperCase";
 export default function PostCard({ post }) {
   console.log(post);
   return (
-    <div className="bg-[#ffffff02] shadow-lg rounded-lg p-0 mb-8">
+    <div className="rounded-lg p-0 ">
       <div className="relative overflow-hidden shadow-md pb-[25rem]">
         <img
           src={post.featuredImage.url}
@@ -15,37 +15,39 @@ export default function PostCard({ post }) {
           className="object-top absolute h-[25rem] w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         />
       </div>
-      <div className="p-4 pt-8">
+      <div className="p-4 py-8">
         {post.categories.map((category) => (
           <span
             key={category.slug}
-            className="p-2 px-4 rounded-sm bg-[rgba(66,172,147,0.17)]"
+            className="p-1 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
           >
             {toUpperCase(category.name)}
           </span>
         ))}
-        <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
+        <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
           <Link href={`/post/${post.slug}`}>{post.title}</Link>
         </h1>
-        <p className=" text-sm text-gray-700 font-normal lg:p-2 mb-4">
+        <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
           {post.excerpt}
         </p>
-        <div className="flex items-center w-full">
-          <div className="flex items-center lg:mb-0 lg:w-auto mr-8">
+        <div className="flex items-center text-[1.4rem] w-full">
+          <div className="flex items-center lg:mb-0 lg:w-auto mr-10">
             <img
               className="align-middle rounded-full object-cover object-top"
               src={post.author.photo.url}
-              height="20px"
-              width="20px"
+              height="25"
+              width="25"
               alt={post.author.name}
             />
-            <p className="inline align-middle text-gray-700 ml-3 text-lg">
+            <p className="inline align-middle text-gray-700 ml-4">
               {post.author.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700 items-center flex ">
-            <CalenderIcon className="inline text-center mr-4" />
-            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+          <div className="font-medium text-gray-700 flex items-center  ">
+            <CalenderIcon className="mr-4" />
+            <span className="text-[1.25rem]">
+              {moment(post.createdAt).format("MMM DD, YYYY")}
+            </span>
           </div>
         </div>
       </div>

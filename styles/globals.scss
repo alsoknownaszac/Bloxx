@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mandali&family=Poiret+One&display=swap");
 
 html {
   font-size: 62.5%;
@@ -16,22 +16,23 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Mandali", sans-serif;
+  // font-family: 'Poiret One', cursive;
 
   &:before {
     content: "";
     content: "";
     width: 100%;
     height: 100vh;
-    background: linear-gradient(
-      to right bottom,
-      #b58ebed2,
-      #6f7eb4d5,
-      #8ab9c0d5,
-      #63968cd7,
-      #77b49ad8
-    );
-    // background: #D3D3D3;
+    // background: linear-gradient(
+    //   to left top,
+    //   #a692aad2,
+    //   #6f7eb4d5,
+    //   #8ab9c0d5,
+    //   #63968cd7,
+    //   #77b49ad8
+    // );
+    background: rgba(244, 244, 244, 1);
     // background-image: url("../public/bg.jpg");
     position: fixed;
     left: 0;

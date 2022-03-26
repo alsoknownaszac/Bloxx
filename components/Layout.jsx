@@ -3,7 +3,7 @@ import { Header } from ".";
 
 export default function Layout({ children }) {
   return (
-    <div className="h-[100vh]">
+    <div className="h-full relative pt-[15rem]">
       <Header />
       {children}
     </div>
