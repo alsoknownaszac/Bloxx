@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { AiFillCopyrightCircle as CopyRight } from "react-icons/ai";
 import {
   FiLinkedin as LinkedIn,
@@ -7,11 +8,13 @@ import {
 } from "react-icons/fi";
 
 export default function Footer() {
+  const currentDate = new Date();
   return (
     <div className="relative bottom-0 text-[1.4rem] bg-[rgba(235,240,240,1)]">
-      <div className="!container mx-auto px-10 py-8 flex items-center justify-between">
+      <div className="!container mx-auto px-10 py-6 flex items-center justify-between">
         <div className="flex items-center">
-          copyright <CopyRight size={"2rem"} className="mx-3" /> 2022 spice
+          copyright <CopyRight size={"2rem"} className="mx-3" />
+          {moment(currentDate).format("YYYY")} spice
         </div>
         <div className="flex items-center text-[2rem]">
           <LinkedIn className="mx-3" />

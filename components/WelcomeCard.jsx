@@ -9,7 +9,7 @@ export default function WelcomeCard() {
           up
         </span>
       </div>
-      <div className="bg-[rgba(50,197,206,0.31)] w-full h-full absolute transform translate-x-[3.3rem] translate-y-[2.5rem]"></div>
+      <div className="bg-[rgba(50,197,206,0.31)] shadow-md w-full h-full absolute transform translate-x-[3.3rem] translate-y-[2.5rem]"></div>
     </div>
   );
 }
