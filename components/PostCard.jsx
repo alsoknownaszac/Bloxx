@@ -3,6 +3,7 @@ import moment from "moment";
 import Link from "next/link";
 import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 import { toUpperCase } from "../helper/toUpperCase";
+import { toTitleCase } from "../helper/toTitleCase";
 
 export default function PostCard({ post }) {
   console.log(post);
@@ -15,21 +16,22 @@ export default function PostCard({ post }) {
           className="object-top absolute h-[25rem] w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         />
       </div>
-      <div className="p-4 py-8">
-        {post.categories.map((category) => (
-          <span
-            key={category.slug}
-            className="p-1 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
-          >
-            {toUpperCase(category.name)}
-          </span>
-        ))}
+      <div className="p-2 py-8">
+        {post.categories &&
+          post.categories.map((category) => (
+            <span
+              key={category.slug}
+              className="p-1 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
+            >
+              {toUpperCase(category.name)}
+            </span>
+          ))}
         <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
-          <Link href={`/post/${post.slug}`}>{post.title}</Link>
+          <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
-        <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
+        {/* <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
           {post.excerpt}
-        </p>
+        </p> */}
         <div className="flex items-center text-[1.4rem] w-full">
           <div className="flex items-center lg:mb-0 lg:w-auto mr-10">
             <img

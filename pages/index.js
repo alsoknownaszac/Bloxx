@@ -3,6 +3,7 @@ import { Categories, PostCard, PostWidget } from "../components";
 import { getPosts } from "../services";
 import { FeaturedPosts } from "../sections";
 import WelcomeCard from "../components/WelcomeCard";
+import PostSection from "../components/PostSection";
 
 export default function Home({ posts }) {
   return (
@@ -11,21 +12,10 @@ export default function Home({ posts }) {
         <title>NoobNotes blog exploring creativity with elegance</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <FeaturedPosts /> */}
       <WelcomeCard />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* <div className="lg:col-span-8 col-span-1"> */}
-        {posts.map((post, index) => (
-          <PostCard post={post.node} key={post.title} />
-        ))}
-        {/* </div> */}
-        {/* <div className="lg:col-span-4 col-span-1">
-          <div className="lg:sticky relative top-8">
-            <PostWidget />
-            <Categories />
-          </div>
-        </div> */}
-      </div>
+      {/* <FeaturedPosts /> */}
+      <PostSection latest />
+      <PostSection recent />
     </div>
   );
 }
