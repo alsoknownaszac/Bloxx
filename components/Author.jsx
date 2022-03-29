@@ -4,7 +4,9 @@ import Image from "next/image";
 export default function Author({ author }) {
   return (
     <div className="mt-20 mb-8 p-8">
-      <h1 className="mb-8 text-[1.8rem]">Author</h1>
+      <h1 className="mb-8 text-[2.5rem] font-semibold px-3 text-gray-500">
+        Author
+      </h1>
       <div className="flex gap-10 text-[1.5rem] relative">
         <Image
           unoptimized

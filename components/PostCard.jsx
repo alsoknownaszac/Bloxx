@@ -30,15 +30,16 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
         />
       </div>
       <div className="p-2 py-8">
-        {post.categories &&
-          post.categories.map((category) => (
-            <span
+        <div className="flex items-center">
+          {post.categories.map((category) => (
+            <div
               key={category.slug}
-              className="p-2 px-4 mr-4 rounded-md leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
+              className="p-4 mr-4 rounded-md w-max leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
-            </span>
+            </div>
           ))}
+        </div>
         <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
@@ -87,8 +88,8 @@ export function FirstCategoryPost({ post }) {
         />
       </div>
       <div className="">
-        {post.categories &&
-          post.categories.map((category) => (
+        <div className="flex ">
+          {post.categories.map((category) => (
             <div
               key={category.slug}
               className=" text-[1.8rem] p-2 px-4 mr-4 w-max rounded-md bg-[rgba(66,172,147,0.17)]"
@@ -96,6 +97,7 @@ export function FirstCategoryPost({ post }) {
               {toUpperCase(category.name)}
             </div>
           ))}
+        </div>
         <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-[3rem] leading-[4rem] font-normal">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>

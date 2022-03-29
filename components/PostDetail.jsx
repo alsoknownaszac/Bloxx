@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
+import { toUpperCase } from "../helper/toUpperCase";
 
 export default function PostDetail({ post }) {
   console.log(post.content.raw.children);
@@ -85,34 +86,44 @@ export default function PostDetail({ post }) {
   };
 
   return (
-    <div className="shadow-md rounded-lg lg:p-8 pb-12 mb-8">
-      <div className="relative overflow-hidden shadow-md mb-6">
+    <div className="shadow-sm rounded-lg lg:p-8 pb-12 mb-8">
+      <div className="flex">
+        {post.categories.map((category) => (
+          <div
+            key={category.slug}
+            className="p-4 mr-4 mb-6 w-max rounded-md text-[2rem] leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
+          >
+            {toUpperCase(category.name)}
+          </div>
+        ))}
+      </div>
+      <h1 className="mb-6 text-[3rem] font-semibold">{post.title}</h1>
+      <div className="flex items-center mb-8 w-full">
+        <div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
+          <img
+            className="align-middle rounded-full"
+            src={post.author.photo.url}
+            height="30px"
+            width="30px"
+            alt={post.author.name}
+          />
+          <p className="inline align-middle text-gray-700 ml-3 text-[1.6rem]">
+            {post.author.name}
+          </p>
+        </div>
+        <div className="font-medium flex items-center text-gray-700 ">
+          <CalenderIcon className="inline text-center mr-4" />
+          <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+        </div>
+      </div>
+      <div className="relative overflow-hidden shadow-md mb-8">
         <img
           src={post.featuredImage.url}
           alt={post.title}
           className="object-top h-full w-full rounded-t-lg "
         />
       </div>
-      <div className="px-4 lg:px-0">
-        <div className="flex items-center mb-8 w-full">
-          <div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-            <img
-              className="align-middle rounded-full"
-              src={post.author.photo.url}
-              height="30px"
-              width="30px"
-              alt={post.author.name}
-            />
-            <p className="inline align-middle text-gray-700 ml-3 text-lg">
-              {post.author.name}
-            </p>
-          </div>
-          <div className="font-medium text-gray-700 ">
-            <CalenderIcon className="inline text-center" />
-            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
-          </div>
-        </div>
-        <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
+      <div className="px-4 lg:px-0 text-[1.8rem]">
         {post.content.raw.children.map((typeObj, index) => {
           const children = typeObj.children.map((item, itemIndex) =>
             getContentFragment(itemIndex, item.text, item)

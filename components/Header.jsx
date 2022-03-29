@@ -30,8 +30,15 @@ export default function Header() {
         </div>
         <div className="col-span-1"></div>
         <div
-          className={`col-span-8 mx-auto columns-[${categories.length}] items-center `}
+          className={`col-span-8 mx-auto columns-[${
+            categories.length + 1
+          }] items-center `}
         >
+          <Link href={`/category/all-categories`}>
+            <span className=" text-center font-normal mx-8 cursor-pointer">
+              All Categories
+            </span>
+          </Link>
           {categories.map((category) => (
             <Link key={category.slug} href={`/category/${category.slug}`}>
               <span className=" text-center font-normal mx-8 cursor-pointer">

@@ -8,19 +8,23 @@ export default function PostSection({ latest, recent, selectedCategory }) {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
 
+  console.log(selectedCategory);
+
   useEffect(() => {
     getCategories().then((newCategories) => setCategories(newCategories));
     getPosts().then((newPosts) => setPosts(newPosts));
   }, []);
 
-  // let filteredCategory;
-  // if (selectedCategory && posts) {
-  //   filteredCategory = posts.filter(({ node: { categories } }) =>
-  //     categories.some((val) => val.slug === selectedCategory)
-  //   );
-  // } else filteredCategory = posts;
+  let filteredCategory;
+  if (selectedCategory === "all-categories") {
+    filteredCategory = posts;
+  } else if (selectedCategory && posts) {
+    filteredCategory = posts.filter(({ node: { categories } }) =>
+      categories.some((val) => val.slug === selectedCategory)
+    );
+  }
 
-  let filteredCategory = posts;
+  // let filteredCategory = posts;
   // console.log(filteredCategory);
   // console.log(posts);
 
