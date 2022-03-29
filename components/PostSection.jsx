@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getCategories, getPosts } from "../services";
 import Link from "next/link";
 import { toUpperCase } from "../helper/toUpperCase";
-import PostCard from "./PostCard";
+import { FirstCategoryPost, PostCard } from "./PostCard";
 
-export default function PostSection({ latest, recent }) {
+export default function PostSection({ latest, recent, selectedCategory }) {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
 
@@ -12,6 +12,17 @@ export default function PostSection({ latest, recent }) {
     getCategories().then((newCategories) => setCategories(newCategories));
     getPosts().then((newPosts) => setPosts(newPosts));
   }, []);
+
+  // let filteredCategory;
+  // if (selectedCategory && posts) {
+  //   filteredCategory = posts.filter(({ node: { categories } }) =>
+  //     categories.some((val) => val.slug === selectedCategory)
+  //   );
+  // } else filteredCategory = posts;
+
+  let filteredCategory = posts;
+  // console.log(filteredCategory);
+  // console.log(posts);
 
   return (
     <div className={`mb-20 ${recent ? "md:-mx-10" : null} `}>
@@ -31,21 +42,36 @@ export default function PostSection({ latest, recent }) {
           ))}
         </div>
       )}
+      {selectedCategory &&
+        filteredCategory.map(
+          (post, index) =>
+            index === 1 && (
+              <FirstCategoryPost
+                post={post.node}
+                index={index}
+                key={post.title}
+                latest={latest}
+                recent={recent}
+              />
+            )
+        )}
       <div
         className={`grid ${
           latest
             ? "grid-cols-1 lg:grid-cols-2 gap-12"
-            : recent
+            : recent || selectedCategory
             ? "grid-cols-2 lg:grid-cols-4 gap-6"
             : null
         } `}
       >
-        {posts.map((post, index) => (
+        {filteredCategory.map((post, index) => (
           <PostCard
             post={post.node}
+            index={index}
             key={post.title}
             latest={latest}
             recent={recent}
+            selectedCategory={selectedCategory}
           />
         ))}
       </div>

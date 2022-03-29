@@ -7,7 +7,7 @@ import PostSection from "../components/PostSection";
 
 export default function Home({ posts }) {
   return (
-    <div className="container mx-auto px-10 mb-8">
+    <div className="">
       <Head>
         <title>NoobNotes blog exploring creativity with elegance</title>
         <link rel="icon" href="/favicon.ico" />
@@ -20,10 +20,32 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
+// export async function getStaticProps() {
+//   const posts = (await getPosts()) || [];
 
-  return {
-    props: { posts },
-  };
-}
+//   return {
+//     props: { posts },
+//   };
+// }
+
+// function findPrimeNumber(num) {
+//   if (num === 1 || num === 2) {
+//     return "Prime Number";
+//   }
+//   if (num % 2 === 0) {
+//     return "Not a Prime Number";
+//   }
+//   for (let i = 2; i < num; i++) {
+//     if (num % i === 0) {
+//       return "Not a Prime number";
+//     }
+//   }
+//   return "Prime Number";
+// }
+
+// console.log(findPrimeNumber(1));
+// console.log(findPrimeNumber(2));
+// console.log(findPrimeNumber(17));
+// console.log(findPrimeNumber(12));
+// console.log(findPrimeNumber(13));
+// console.log(findPrimeNumber(15));
