@@ -45,7 +45,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
       {selectedCategory &&
         filteredCategory.map(
           (post, index) =>
-            index === 1 && (
+            index === 0 && (
               <FirstCategoryPost
                 post={post.node}
                 index={index}
@@ -64,16 +64,31 @@ export default function PostSection({ latest, recent, selectedCategory }) {
             : null
         } `}
       >
-        {filteredCategory.map((post, index) => (
-          <PostCard
-            post={post.node}
-            index={index}
-            key={post.title}
-            latest={latest}
-            recent={recent}
-            selectedCategory={selectedCategory}
-          />
-        ))}
+        {!selectedCategory &&
+          filteredCategory.map((post, index) => (
+            <PostCard
+              post={post.node}
+              index={index}
+              key={post.title}
+              latest={latest}
+              recent={recent}
+              selectedCategory={selectedCategory}
+            />
+          ))}
+        {selectedCategory &&
+          filteredCategory.map(
+            (post, index) =>
+              index > 0 && (
+                <PostCard
+                  post={post.node}
+                  index={index}
+                  key={post.title}
+                  latest={latest}
+                  recent={recent}
+                  selectedCategory={selectedCategory}
+                />
+              )
+          )}
       </div>
     </div>
   );

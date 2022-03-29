@@ -34,7 +34,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
           post.categories.map((category) => (
             <span
               key={category.slug}
-              className="p-2 px-4 rounded-md bg-[rgba(66,172,147,0.17)]"
+              className="p-2 px-4 mr-4 rounded-md leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
             </span>
@@ -72,20 +72,13 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
           </div>
         </div>
       </div>
-      {/* <div className="text-center cursor-pointer">
-        <Link href={`/post/${post.slug}`}>
-          <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-blue-300 text-white py-1 px-3 text-lg font-medium rounded-full">
-            Read more...
-          </span>
-        </Link>
-      </div> */}
     </div>
   );
 }
 
 export function FirstCategoryPost({ post }) {
   return (
-    <div className="px-10 mb-[8rem] grid grid-cols-2 gap-10 text-[1.5rem]">
+    <div className="px-10 mb-[8rem] grid grid-cols-2 gap-12 text-[1.5rem]">
       <div className={`relative overflow-hidden shadow-md pb-[40rem]`}>
         <img
           src={post.featuredImage.url}
@@ -98,7 +91,7 @@ export function FirstCategoryPost({ post }) {
           post.categories.map((category) => (
             <div
               key={category.slug}
-              className=" text-[1.8rem] p-2 px-4 w-max rounded-md bg-[rgba(66,172,147,0.17)]"
+              className=" text-[1.8rem] p-2 px-4 mr-4 w-max rounded-md bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
             </div>
@@ -106,7 +99,7 @@ export function FirstCategoryPost({ post }) {
         <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-[3rem] leading-[4rem] font-normal">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
-        <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
+        <p className=" text-[1.4rem] text-gray-700 font-normal mb-4">
           {post.excerpt}
         </p>
         <div className="flex items-center text-[1.4rem] w-full">
