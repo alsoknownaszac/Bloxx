@@ -22,7 +22,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
     filteredCategory = posts.filter(({ node: { categories } }) =>
       categories.some((val) => val.slug === selectedCategory)
     );
-  }
+  } else filteredCategory = posts;
 
   // let filteredCategory = posts;
   // console.log(filteredCategory);
