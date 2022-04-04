@@ -107,17 +107,19 @@ export default function CommentsForm({ slug }) {
           </label>
         </div>
       </div>
-      {error && <p className="text-xs text-red-500">All fields are required</p>}
+      {error && (
+        <p className="text-[1.3rem] text-red-500">All fields are required</p>
+      )}
       <div className="mt-8">
         <button
-          className="text-[1.6rem] transition duration-500 ease hover:bg-indigo-500 inline-block bg-gray-600 text-lg rounded-lg text-white px-8 py-4 cursor-pointer"
+          className="!text-[1.6rem] transition duration-500 ease hover:bg-indigo-500 inline-block bg-gray-600 text-lg rounded-lg text-white px-8 py-4 cursor-pointer"
           type={"button"}
           onClick={handleCommentSubmission}
         >
           Post Comment
         </button>
         {showSuccessMessage && (
-          <span className="text-xl float-right font-semibold mt-3 text-green-500 ">
+          <span className="text-[1.8rem] float-right font-semibold mt-3 text-green-500 ">
             Comment submitted for review
           </span>
         )}

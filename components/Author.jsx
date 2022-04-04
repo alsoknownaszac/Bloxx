@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Author({ author }) {
   return (
-    <div className="mt-20 mb-8 p-8">
+    <div className="mb-20 px-8">
       <h1 className="mb-8 text-[2.5rem] font-semibold px-3 text-gray-500">
         Author
       </h1>

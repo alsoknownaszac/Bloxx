@@ -79,7 +79,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
 
 export function FirstCategoryPost({ post }) {
   return (
-    <div className="px-10 mb-[8rem] grid grid-cols-2 gap-12 text-[1.5rem]">
+    <div className="px-5 mb-[8rem] grid grid-cols-2 gap-12 text-[1.5rem]">
       <div className={`relative overflow-hidden shadow-md pb-[40rem]`}>
         <img
           src={post.featuredImage.url}

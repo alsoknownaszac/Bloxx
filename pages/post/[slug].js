@@ -10,6 +10,7 @@ import {
   CommentsForm,
   Loader,
 } from "../../components";
+import SimilarPost from "../../components/SimilarPost";
 
 export default function PostDetails({ post }) {
   const router = useRouter();
@@ -23,6 +24,11 @@ export default function PostDetails({ post }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-9">
           <PostDetail post={post} />
+          {/* <SimilarPost selectedCategory={post.Categories} /> */}
+          <PostWidget
+            slug={post.slug}
+            categories={post.categories.map((category) => category.slug)}
+          />
           <Author author={post.author} />
           <CommentsForm slug={post.slug} />
           <Comments slug={post.slug} />

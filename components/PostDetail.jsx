@@ -4,7 +4,7 @@ import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 import { toUpperCase } from "../helper/toUpperCase";
 
 export default function PostDetail({ post }) {
-  console.log(post.content.raw.children);
+  // console.log(post.content.raw.children);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
@@ -86,7 +86,7 @@ export default function PostDetail({ post }) {
   };
 
   return (
-    <div className="shadow-sm rounded-lg lg:p-8 pb-12 mb-8">
+    <div className="lg:p-8 pb-12 mb-20">
       <div className="flex">
         {post.categories.map((category) => (
           <div
@@ -103,8 +103,8 @@ export default function PostDetail({ post }) {
           <img
             className="align-middle rounded-full"
             src={post.author.photo.url}
-            height="30px"
-            width="30px"
+            height="50px"
+            width="50px"
             alt={post.author.name}
           />
           <p className="inline align-middle text-gray-700 ml-3 text-[1.6rem]">
