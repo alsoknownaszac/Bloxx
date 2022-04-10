@@ -64,7 +64,7 @@ export default function CommentsForm({ slug }) {
   };
 
   return (
-    <div className="bg-gray-100 shadow-md rounded-lg p-8 pb-12 mb-8">
+    <div className="bg-gray-100 dark:bg-[rgba(22,20,20,1)] dark:text-white shadow-md rounded-lg p-8 pb-12 mb-8">
       <h3 className="mb-8 font-semibold text-[2rem] border-b pb-4">
         Leave a comment
       </h3>
@@ -112,7 +112,7 @@ export default function CommentsForm({ slug }) {
       )}
       <div className="mt-8">
         <button
-          className="!text-[1.6rem] transition duration-500 ease hover:bg-indigo-500 inline-block bg-gray-600 text-lg rounded-lg text-white px-8 py-4 cursor-pointer"
+          className="!text-[1.6rem] transition duration-500 ease hover:bg-indigo-500 inline-block bg-gray-600 dark:bg-[rgba(3,189,201,1)] text-lg rounded-lg text-white px-8 py-4 cursor-pointer"
           type={"button"}
           onClick={handleCommentSubmission}
         >

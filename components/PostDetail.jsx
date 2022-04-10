@@ -2,9 +2,10 @@ import React from "react";
 import moment from "moment";
 import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 import { toUpperCase } from "../helper/toUpperCase";
+// import { RichText } from "@graphcms/rich-text-react-renderer";
 
 export default function PostDetail({ post }) {
-  // console.log(post.content.raw.children);
+  console.log(post.content.raw.children);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
@@ -19,6 +20,20 @@ export default function PostDetail({ post }) {
 
       if (obj.underline) {
         modifiedText = <u key={index}>{text}</u>;
+      }
+      if (obj.href) {
+        modifiedText = (
+          <a
+            className="text-blue-300 hover:underline !hover:underline-offset-8 cursor-pointer"
+            target={obj.openInNewTab && "_blank"}
+            href={obj.href}
+            key={index}
+          >
+            {obj.children.map((item, i) => (
+              <React.Fragment key={i}>{item.text}</React.Fragment>
+            ))}
+          </a>
+        );
       }
     }
 
@@ -50,6 +65,7 @@ export default function PostDetail({ post }) {
       case "image":
         return (
           <img
+            className="mb-8"
             key={index}
             alt={obj.title}
             height={obj.height}
@@ -60,26 +76,60 @@ export default function PostDetail({ post }) {
       case "iframe":
         return (
           <iframe
+            className="mb-8"
             src={obj.url}
             width={obj.width}
             height={obj.height}
+            target="_top"
             // title="W3Schools Free Online Web Tutorials"
           ></iframe>
         );
       case "block-quote":
         return (
-          <blockquote cite="http://www.worldwildlife.org/who/index.html">
-            {obj.children.map((quote) => quote.text)}
+          <blockquote className="bg-[#f1e7e75d] p-4 rounded-md mb-8">
+            {obj.children.map((quote) => (
+              <React.Fragment key={quote.text}>{quote.text}</React.Fragment>
+            ))}
           </blockquote>
         );
       case "code-block":
         return (
-          <pre class="max-w-full p-2 whitespace-pre-wrap">
-            <code>{obj.children.map((code) => code.obj)}</code>
+          <pre className="mb-8 pre max-w-full p-2 whitespace-pre-wrap">
+            <code className="code">
+              {obj.children.map((code) => (
+                <React.Fragment key={code.text}>{code.text}</React.Fragment>
+              ))}
+            </code>
           </pre>
         );
-      case "link":
-        return <a href={obj.href}>{obj.text}</a>;
+      case "bulleted-list":
+        return (
+          <ul className="list-disc pl-12 mb-8 list-outside ">
+            {obj.children.map((listItem, i) => {
+              let { text } = ListDisplay(listItem);
+              return (
+                <li className="pl-2 mb-4" key={i}>
+                  <span>{text}</span>
+                </li>
+              );
+            })}
+          </ul>
+        );
+      case "numbered-list":
+        return (
+          <ol className="list-decimal pl-10 mb-8 list-outside ">
+            {obj.children.map((listItem, i) => {
+              let { text } = ListDisplay(listItem);
+              return (
+                <li className="pl-4 mb-4" key={i}>
+                  <span>{text}</span>
+                </li>
+              );
+            })}
+          </ol>
+        );
+      case "class":
+        return <div className={obj.className}>{modifiedText}</div>;
       default:
         return modifiedText;
     }
@@ -107,30 +157,52 @@ export default function PostDetail({ post }) {
             width="50px"
             alt={post.author.name}
           />
-          <p className="inline align-middle text-gray-700 ml-3 text-[1.6rem]">
+          <p className="inline align-middle text-gray-700 dark:text-white ml-3 text-[1.6rem]">
             {post.author.name}
           </p>
         </div>
-        <div className="font-medium flex items-center text-gray-700 ">
+        <div className="font-medium flex items-center text-gray-700 dark:text-white">
           <CalenderIcon className="inline text-center mr-4" />
           <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
         </div>
       </div>
-      <div className="relative overflow-hidden shadow-md mb-8">
+      <div className="relative overflow-hidden shadow-md mb-10">
         <img
           src={post.featuredImage.url}
           alt={post.title}
           className="object-top h-full w-full rounded-t-lg "
         />
       </div>
+
       <div className="px-4 lg:px-0 text-[1.8rem]">
         {post.content.raw.children.map((typeObj, index) => {
-          const children = typeObj.children.map((item, itemIndex) =>
-            getContentFragment(itemIndex, item.text, item)
+          const children = typeObj.children.map((item, itemIndex) => (
+            <React.Fragment key={itemIndex}>
+              {getContentFragment(itemIndex, item.text, item)}
+            </React.Fragment>
+          ));
+          return (
+            <React.Fragment key={index}>
+              {getContentFragment(index, children, typeObj, typeObj.type)}
+            </React.Fragment>
           );
-          return getContentFragment(index, children, typeObj, typeObj.type);
         })}
       </div>
+      {/* <div className="px-4 lg:px-0 text-[1.8rem]">
+        <RichText content={post.content.raw.children} />
+      </div> */}
     </div>
   );
+}
+
+function ListDisplay(listItem) {
+  let text;
+  listItem.children.map((listItemChild, idx) => (
+    <React.Fragment key={idx}>
+      {listItemChild.children.map((item, index) => (
+        <React.Fragment key={index}>{(text = item.text)}</React.Fragment>
+      ))}
+    </React.Fragment>
+  ));
+  return { text };
 }

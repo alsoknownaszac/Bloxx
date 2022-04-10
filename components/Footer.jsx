@@ -10,7 +10,7 @@ import {
 export default function Footer() {
   const currentDate = new Date();
   return (
-    <div className="relative bottom-0 text-[1.4rem] bg-[rgba(235,240,240,1)]">
+    <div className="relative bottom-0 text-[1.4rem] bg-[rgba(235,240,240,1)] dark:bg-[rgba(43,65,67,0.29)] dark:text-white">
       <div className="!container mx-auto px-10 py-6 flex items-center justify-between">
         <div className="flex items-center">
           copyright <CopyRight size={"2rem"} className="mx-3" />

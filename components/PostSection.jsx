@@ -35,7 +35,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
       </h1>
       {recent && (
         <div
-          className={`p-2 py-4 w-max mb-14 columns-[${categories.length}] items-center bg-[rgba(242,242,242,1)]`}
+          className={`p-2 py-4 w-max mb-14 columns-[${categories.length}] items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white`}
         >
           {categories.map((category) => (
             <Link key={category.slug} href={`/category/${category.slug}`}>

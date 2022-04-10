@@ -55,11 +55,11 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
               width="25"
               alt={post.author.name}
             />
-            <p className="inline align-middle text-gray-700 ml-4">
+            <p className="inline align-middle text-gray-700 dark:text-white ml-4">
               {post.author.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700 flex items-center  ">
+          <div className="font-medium text-gray-700 dark:text-white flex items-center  ">
             <CalenderIcon className="mr-4" />
             <span className="text-[1.25rem]">
               {moment(post.createdAt).format(

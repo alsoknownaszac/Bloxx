@@ -14,7 +14,7 @@ export default function Comments({ slug }) {
   return (
     <div className="">
       {comments.length > 0 && (
-        <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
+        <div className="bg-white dark:bg-[rgba(22,20,20,1)] dark:text-white shadow-lg rounded-lg p-8 pb-12 mb-8">
           <h3 className="text-xl mb-8 font-semibold border-b pb-4">
             {comments.length} Comments
           </h3>
@@ -27,7 +27,7 @@ export default function Comments({ slug }) {
                 <span className="font-semibold">{comment.name}</span> on{" "}
                 {moment(comment.createdAt).format("MMM DD, YYYY")}
               </p>
-              <p className="whitespace-pre-line text-gray-600 w-full">
+              <p className="whitespace-pre-line text-gray-600 dark:text-white w-full">
                 {parse(comment.comment)}
               </p>
             </div>

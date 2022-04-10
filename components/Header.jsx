@@ -9,9 +9,7 @@ import { RiMoonFill, RiMoonLine, RiSearchLine } from "react-icons/ri";
 //   { name: "web dev", slug: "web dev" },
 // ];
 
-export default function Header() {
-  const [mode, setMode] = useState(false);
-
+export default function Header({ mode, setMode }) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -19,8 +17,8 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="sticky z-50 top-[15rem] transform translate-y-[-8rem] container mx-auto px-10">
-      <div className="shadow-sm grid grid-cols-12 rounded-lg p-5 items-center bg-[rgba(242,242,242,1)]">
+    <div className="sticky z-50 h-[13rem] top-[0rem] flex items-end px-10 backdrop-blur-sm">
+      <div className="container mx-auto shadow-sm grid grid-cols-12 rounded-lg p-5 items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white">
         <div className="md:float-left block col-span-1">
           <Link href="/">
             <span className="cursor-pointer font-bold text-4xl ">
