@@ -40,7 +40,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
             </div>
           ))}
         </div>
-        <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
+        <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-medium">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
         {/* <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
@@ -55,11 +55,11 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
               width="25"
               alt={post.author.name}
             />
-            <p className="inline align-middle text-gray-700 dark:text-white ml-4">
+            <p className="inline align-middle text-gray-700 dark:text-gray-200 ml-4">
               {post.author.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700 dark:text-white flex items-center  ">
+          <div className="font-medium text-gray-700 dark:text-gray-200 flex items-center  ">
             <CalenderIcon className="mr-4" />
             <span className="text-[1.25rem]">
               {moment(post.createdAt).format(
@@ -101,7 +101,7 @@ export function FirstCategoryPost({ post }) {
         <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-[3rem] leading-[4rem] font-normal">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
-        <p className=" text-[1.4rem] text-gray-700 font-normal mb-4">
+        <p className=" text-[1.6rem] text-gray-700 dark:text-gray-400 font-normal mb-4">
           {post.excerpt}
         </p>
         <div className="flex items-center text-[1.4rem] w-full">
@@ -113,11 +113,11 @@ export function FirstCategoryPost({ post }) {
               width="25"
               alt={post.author.name}
             />
-            <p className="inline align-middle text-gray-700 ml-4">
+            <p className="inline align-middle text-gray-700 dark:text-gray-200 ml-4">
               {post.author.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700 flex items-center  ">
+          <div className="font-medium text-gray-700 dark:text-gray-200 flex items-center  ">
             <CalenderIcon className="mr-4" />
             <span className="text-[1.25rem]">
               {moment(post.createdAt).format("MMM DD, YYYY")}

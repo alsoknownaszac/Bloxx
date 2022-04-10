@@ -147,7 +147,7 @@ export default function PostDetail({ post }) {
           </div>
         ))}
       </div>
-      <h1 className="mb-6 text-[3rem] font-semibold">{post.title}</h1>
+      <h1 className="mb-6 text-[3rem] font-medium">{post.title}</h1>
       <div className="flex items-center mb-8 w-full">
         <div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
           <img
@@ -157,11 +157,11 @@ export default function PostDetail({ post }) {
             width="50px"
             alt={post.author.name}
           />
-          <p className="inline align-middle text-gray-700 dark:text-white ml-3 text-[1.6rem]">
+          <p className="inline align-middle text-gray-700 dark:text-gray-200 ml-3 text-[1.6rem]">
             {post.author.name}
           </p>
         </div>
-        <div className="font-medium flex items-center text-gray-700 dark:text-white">
+        <div className="font-medium flex items-center text-gray-700 dark:text-gray-200">
           <CalenderIcon className="inline text-center mr-4" />
           <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
         </div>

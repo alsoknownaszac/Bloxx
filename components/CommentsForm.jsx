@@ -65,7 +65,7 @@ export default function CommentsForm({ slug }) {
 
   return (
     <div className="bg-gray-100 dark:bg-[rgba(22,20,20,1)] dark:text-white shadow-md rounded-lg p-8 pb-12 mb-8">
-      <h3 className="mb-8 font-semibold text-[2rem] border-b pb-4">
+      <h3 className="mb-8 font-medium text-[2rem] border-b pb-4">
         Leave a comment
       </h3>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
@@ -100,7 +100,7 @@ export default function CommentsForm({ slug }) {
             value="true"
           />
           <label
-            className="text-gray-500 cursor-pointer ml-2"
+            className="text-gray-500 dark:text-gray-200  cursor-pointer ml-2"
             htmlFor="storeData"
           >
             Save my e-mail and name for the next time i comment
