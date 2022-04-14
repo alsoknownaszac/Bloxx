@@ -64,7 +64,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
           latest
             ? "grid-cols-1 lg:grid-cols-2 gap-12"
             : recent || selectedCategory
-            ? "grid-cols-2 lg:grid-cols-4 gap-6"
+            ? "grid-cols-1 lg:grid-cols-4 gap-6"
             : null
         } `}
       >
