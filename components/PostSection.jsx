@@ -39,7 +39,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
         >
           {categories.map((category) => (
             <Link key={category.slug} href={`/category/${category.slug}`}>
-              <span className=" text-center font-normal mx-8 cursor-pointer">
+              <span className="hidden sm:contents text-center font-normal mx-8 cursor-pointer">
                 {toUpperCase(category.name)}
               </span>
             </Link>

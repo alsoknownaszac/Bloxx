@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         <Header mode={mode} setMode={setMode} />
         <MobileHeader mode={mode} setMode={setMode} />
         {/* <div className="h-[calc(100%-15rem)] relative "> */}
-        <div className="container mx-auto pt-[7rem] px-5 md:px-10">
+        <div className="container mx-auto pt-[3rem] sm:pt-[7rem] px-8 md:px-10">
           {children}
         </div>
         <Footer />

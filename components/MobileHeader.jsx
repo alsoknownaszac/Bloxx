@@ -16,16 +16,16 @@ export default function MobileHeader({ mode, setMode }) {
 
   return (
     <div className="md:hidden sticky z-50 h-[10rem] top-[0rem] flex items-end px-5 md:px-10 backdrop-blur-sm">
-      <div className="container mx-auto shadow-sm grid grid-cols-12 rounded-lg p-5 items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white">
-        <div className="md:float-left block col-span-4">
+      <div className="container mx-auto shadow-sm flex  justify-between rounded-lg p-5 items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white">
+        <div className="md:float-left block ">
           <Link href="/">
             <span className="cursor-pointer font-bold text-2xl ">
               NoobNotes
             </span>
           </Link>
         </div>
-        <div className="col-span-4"></div>
-        <div className=" col-span-4 flex items-center md:ml-auto">
+        {/* <div className=""></div> */}
+        <div className="flex items-center md:ml-auto">
           <RiSearchLine className="cursor-pointer text-[1.8rem] mr-10" />
           <div
             className="cursor-pointer text-[1.8rem] mr-10"
@@ -37,7 +37,11 @@ export default function MobileHeader({ mode, setMode }) {
             className="cursor-pointer text-[1.8rem] mr-4"
             onClick={() => setMenu(!menu)}
           >
-            {!menu ? <HiOutlineMenu /> : <CgMenuMotion />}
+            {!menu ? (
+              <HiOutlineMenu size={"2rem"} />
+            ) : (
+              <CgMenuMotion size={"2rem"} />
+            )}
           </div>
         </div>
       </div>
