@@ -40,7 +40,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
             </div>
           ))}
         </div>
-        <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-3xl font-medium">
+        <h1 className="transition duration-700 mt-6 mb-2 cursor-pointer hover:text-pink-600 text-[2.2rem] md:text-[2.5rem] leading-[110%] font-medium">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
         {/* <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
