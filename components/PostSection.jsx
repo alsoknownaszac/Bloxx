@@ -30,7 +30,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
 
   return (
     <div className={`mb-20 ${recent ? "md:-mx-10" : null} `}>
-      <h1 className="text-[1.8rem] xs:text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[110%] mb-10">
+      <h1 className="text-[1.8rem] xs:text-[1.9rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] leading-[110%] mb-10">
         {latest ? "Latest" : recent ? "Recent" : null}
       </h1>
       {recent && (
@@ -62,9 +62,9 @@ export default function PostSection({ latest, recent, selectedCategory }) {
       <div
         className={`grid ${
           latest
-            ? "grid-cols-1 lg:grid-cols-2 gap-12"
+            ? "grid-cols-1 md:grid-cols-2 gap-20"
             : recent || selectedCategory
-            ? "grid-cols-1 lg:grid-cols-4 gap-6"
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10"
             : null
         } `}
       >
