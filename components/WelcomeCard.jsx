@@ -2,9 +2,9 @@ import React from "react";
 
 export default function WelcomeCard() {
   return (
-    <div className="relative w-[92%] xs:w-[85%] sm:w-[83%] md:w-[75vw] h-[13rem] sm:h-[16rem] md:h-[19rem] mx-auto mt-16 md:mt-12 mb-40">
+    <div className="relative w-[92%] xs:w-[85%] sm:w-[83%] md:w-[75vw] h-[13rem] sm:h-[16rem] md:h-[19rem] mx-auto mt-12 mb-28 md:mb-40">
       <div className="bg-[#03BDC9] absolute w-full h-full z-10 flex justify-center items-center text-white text-[4rem] ">
-        <span className="w-[80%] py-[10%] font-welcome font-semibold text-center text-white text-[1.8rem] xs:text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[2.4rem] sm:leading-[3.5rem] md:leading-[4.5rem]">
+        <span className="w-[80%] py-[10%] font-welcome font-semibold text-center text-white text-[1.8rem] xs:text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[110%]">
           Hey! its just a developer and a <br /> designer here, spicing things
           up
         </span>

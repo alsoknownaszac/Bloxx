@@ -30,7 +30,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
 
   return (
     <div className={`mb-20 ${recent ? "md:-mx-10" : null} `}>
-      <h1 className="text-[3rem] mb-10">
+      <h1 className="text-[1.8rem] xs:text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4.5rem] leading-[110%] mb-10">
         {latest ? "Latest" : recent ? "Recent" : null}
       </h1>
       {recent && (
