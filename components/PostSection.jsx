@@ -35,11 +35,11 @@ export default function PostSection({ latest, recent, selectedCategory }) {
       </h1>
       {recent && (
         <div
-          className={`p-2 py-4 w-max mb-14 columns-[${categories.length}] items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white`}
+          className={`p-2 py-4 w-max hidden md:flex mb-14 columns-[${categories.length}] items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white`}
         >
           {categories.map((category) => (
             <Link key={category.slug} href={`/category/${category.slug}`}>
-              <span className="hidden sm:contents text-center font-normal mx-8 cursor-pointer">
+              <span className=" text-center font-normal mx-8 cursor-pointer">
                 {toUpperCase(category.name)}
               </span>
             </Link>
@@ -64,7 +64,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
           latest
             ? "grid-cols-1 md:grid-cols-2 gap-20"
             : recent || selectedCategory
-            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10"
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10"
             : null
         } `}
       >
