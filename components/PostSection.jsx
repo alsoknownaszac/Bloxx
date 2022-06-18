@@ -11,8 +11,10 @@ export default function PostSection({ latest, recent, selectedCategory }) {
   console.log(selectedCategory);
 
   useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-    getPosts().then((newPosts) => setPosts(newPosts));
+    // getCategories().then((newCategories) => setCategories(newCategories));
+    // getPosts().then((newPosts) => setPosts(newPosts));
+
+    console.log("wow");
   }, []);
 
   let filteredCategory;
@@ -33,7 +35,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
       <h1 className="text-[1.8rem] xs:text-[1.9rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] leading-[110%] mb-10">
         {latest ? "Latest" : recent ? "Recent" : null}
       </h1>
-      {recent && (
+      {/* {recent && (
         <div
           className={`p-2 py-4 w-max hidden md:flex mb-14 columns-[${categories.length}] items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white`}
         >
@@ -45,8 +47,8 @@ export default function PostSection({ latest, recent, selectedCategory }) {
             </Link>
           ))}
         </div>
-      )}
-      {selectedCategory &&
+      )} */}
+      {/* {selectedCategory &&
         filteredCategory.map(
           (post, index) =>
             index === 0 && (
@@ -58,8 +60,8 @@ export default function PostSection({ latest, recent, selectedCategory }) {
                 recent={recent}
               />
             )
-        )}
-      <div
+        )} */}
+      {/* <div
         className={`grid ${
           latest
             ? "grid-cols-1 md:grid-cols-2 gap-20"
@@ -93,7 +95,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
                 />
               )
           )}
-      </div>
+      </div> */}
     </div>
   );
 }

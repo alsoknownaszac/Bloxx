@@ -15,7 +15,7 @@ export default function Home({ posts }) {
       <WelcomeCard />
       {/* <FeaturedPosts /> */}
       <PostSection latest />
-      <PostSection recent />
+      {/* <PostSection recent /> */}
     </div>
   );
 }
