@@ -12,6 +12,8 @@ import { RiMoonFill, RiMoonLine, RiSearchLine } from "react-icons/ri";
 import { MdDoubleArrow } from "react-icons/md";
 import { PopOver } from "./PopOver";
 import { Popover, Transition } from "@headlessui/react";
+import { useQuery } from "@apollo/client";
+import { GET_CATEGORIES } from "../query/getCategories";
 
 // const categories = [
 //   { name: "react", slug: "react" },
@@ -21,9 +23,11 @@ import { Popover, Transition } from "@headlessui/react";
 export default function Header({ mode, setMode }) {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-  }, []);
+  const { loading, error, data } = useQuery(GET_CATEGORIES);
+
+  if (loading) return "Loading...";
+
+  if (error) return `Error! ${error.message}`;
 
   return (
     <div className="hidden md:text-[1.45rem] lg:text-[1.7rem] md:flex sticky z-50 h-[13rem] top-[0rem] items-end px-5 md:px-10 backdrop-blur-sm">
@@ -36,8 +40,8 @@ export default function Header({ mode, setMode }) {
           </Link>
         </div>
         <div className="col-span-1"></div>
-        <MdHeaderTab categories={categories} />
-        <LgHeaderTab categories={categories} />
+        <MdHeaderTab loading={loading} data={data?.categories} />
+        <LgHeaderTab loading={loading} data={data?.categories} />
         <div className=" col-span-2 flex items-center md:ml-auto">
           <RiSearchLine className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem] mr-16" />
           <div
@@ -52,20 +56,20 @@ export default function Header({ mode, setMode }) {
   );
 }
 
-function LgHeaderTab({ categories }) {
+function LgHeaderTab({ loading, data }) {
   return (
     <div
       className={`col-span-8 mx-auto hidden lg:flex items-center columns-[${
-        categories.length + 2
+        data?.length + 2
       }] md:text-[1.45rem] lg:text-[1.7rem] `}
     >
-      <Link href={`/category/all-categories`}>
+      <Link href={`/all`}>
         <span className=" text-center font-normal mx-8 cursor-pointer">
           All Categories
         </span>
       </Link>
-      {categories.map((category, i) => (
-        <Link key={category.slug} href={`/category/${category.slug}`}>
+      {data?.map((category, i) => (
+        <Link key={category.id} href={`/${category.slug}`}>
           <span className=" text-center font-normal mx-8 cursor-pointer">
             {toUpperCase(category.name)}
           </span>
@@ -75,32 +79,32 @@ function LgHeaderTab({ categories }) {
   );
 }
 
-function MdHeaderTab({ categories }) {
+function MdHeaderTab({ loading, data }) {
   return (
     <div
       className={`col-span-8 mx-auto hidden md:flex lg:hidden items-center columns-4 md:text-[1.45rem] lg:text-[1.7rem] `}
     >
-      <Link href={`/category/all-categories`}>
+      <Link href={`/all`}>
         <span className=" text-center font-normal mx-8 cursor-pointer">
           All Categories
         </span>
       </Link>
-      {categories.map(
+      {data?.map(
         (category, i) =>
           i < 2 && (
-            <Link key={category.slug} href={`/category/${category.slug}`}>
+            <Link key={category.id} href={`/${category.slug}`}>
               <span className=" text-center font-normal mx-8 cursor-pointer">
                 {toUpperCase(category.name)}
               </span>
             </Link>
           )
       )}
-      <MoreHeaderTab categories={categories} />
+      <MoreHeaderTab loading={loading} data={data} />
     </div>
   );
 }
 
-function MoreHeaderTab({ categories }) {
+function MoreHeaderTab({ loading, data }) {
   let timeout; // NodeJS.Timeout
   const timeoutDuration = 200;
 
@@ -172,13 +176,10 @@ function MoreHeaderTab({ categories }) {
               static
               className="absolute top-12 -left-8 z-10 bg-gray-200 p-4 rounded-lg"
             >
-              {categories.map(
+              {data?.map(
                 (category, i) =>
                   i > 1 && (
-                    <Link
-                      key={category.slug}
-                      href={`/category/${category.slug}`}
-                    >
+                    <Link key={category.id} href={`/${category.slug}`}>
                       <div className=" text-center font-normal px-8 py-2 mb-2 rounded-lg bg-gray-300 hover:bg-[rgba(50,197,206,0.31)] cursor-pointer">
                         {toUpperCase(category.name)}
                       </div>
@@ -192,3 +193,25 @@ function MoreHeaderTab({ categories }) {
     </Popover>
   );
 }
+
+// import { gql } from "graphql-request";
+// import { cmsClient, hygraph } from "../pages/api/cmsClient";
+
+// const QUERY = gql`
+//   {
+//     categories {
+//       name
+//       slug
+//     }
+//   }
+// `;
+
+// export async function getStaticProps() {
+//   const { posts } = await hygraph.request(QUERY);
+
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }

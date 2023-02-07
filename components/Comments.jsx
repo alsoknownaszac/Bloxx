@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import parse from "html-react-parser";
 
-import { getComments } from "../services";
+// import { getComments } from "../services";
 
-export default function Comments({ slug }) {
-  const [comments, setComments] = useState([]);
+export default function Comments({ comments }) {
+  // const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    getComments(slug).then((result) => setComments(result));
-  }, []);
+  // useEffect(() => {
+  //   getComments(slug).then((result) => setComments(result));
+  // }, []);
 
   return (
     <div className="">

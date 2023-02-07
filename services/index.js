@@ -1,4 +1,5 @@
 import { request, gql } from "graphql-request";
+import { cmsClient } from "../pages/api/cmsClient";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
@@ -32,7 +33,7 @@ export const getPosts = async () => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await cmsClient.request(query);
 
   return result.postsConnection.edges;
 };
@@ -66,7 +67,7 @@ export const getPostDetails = async (slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await cmsClient.request(query, { slug });
 
   return result.post;
 };
@@ -87,7 +88,7 @@ export const getRecentPosts = async () => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await cmsClient.request(query);
 
   return result.posts;
 };
@@ -123,7 +124,7 @@ export const getSimilarPosts = async (categories, slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { categories, slug });
+  const result = await cmsClient.request(query, { categories, slug });
 
   return result.posts;
 };
@@ -145,24 +146,25 @@ export const getFeaturedPosts = async () => {
         slug
         createdAt
       }
-    }   
+    }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await cmsClient.request(query);
 
   return result.posts;
 };
 
 export const getCategories = async () => {
   const query = gql`
-    query GetCategories {
+    query Categories {
       categories {
         name
         slug
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+
+  const result = await cmsClient.request(query);
 
   return result.categories;
 };
@@ -199,7 +201,7 @@ export const getCategoryPost = async (slug) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await cmsClient.request(query, { slug });
 
   return result.postsConnection.edges;
 };
@@ -226,7 +228,7 @@ export const getComments = async (slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await cmsClient.request(query, { slug });
 
   return result.comments;
 };

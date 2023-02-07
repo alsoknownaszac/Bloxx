@@ -1,8 +1,9 @@
+import { useQuery } from "@apollo/client";
 import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import { FeaturedPostCard } from "../components";
+import { GET_SINGLE_POST } from "../query/getSinglePost";
 import { getFeaturedPosts } from "../services";
 
 const responsive = {
@@ -24,17 +25,7 @@ const responsive = {
   },
 };
 
-const FeaturedPosts = () => {
-  const [featuredPosts, setFeaturedPosts] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
-
-  useEffect(() => {
-    getFeaturedPosts().then((result) => {
-      setFeaturedPosts(result);
-      setDataLoaded(true);
-    });
-  }, []);
-
+const FeaturedPosts = ({ slug }) => {
   const customLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
@@ -73,22 +64,35 @@ const FeaturedPosts = () => {
     </div>
   );
 
-  return (
-    <div className="mb-8">
-      <Carousel
-        infinite
-        customLeftArrow={customLeftArrow}
-        customRightArrow={customRightArrow}
-        responsive={responsive}
-        itemClass="px-4"
-      >
-        {dataLoaded &&
-          featuredPosts.map((post, index) => (
+  const { loading, error, data } = useQuery(GET_SINGLE_POST, {
+    variables: {
+      where: {
+        slug: slug,
+      },
+    },
+  });
+  console.log(data);
+
+  if (loading) return "Loading...";
+
+  if (error) return `Error! ${error.message}`;
+
+  if (data.isFeaturedPost)
+    return (
+      <div className="mb-8">
+        <Carousel
+          infinite
+          customLeftArrow={customLeftArrow}
+          customRightArrow={customRightArrow}
+          responsive={responsive}
+          itemClass="px-4"
+        >
+          {data?.map((post, index) => (
             <FeaturedPostCard key={index} post={post} />
           ))}
-      </Carousel>
-    </div>
-  );
+        </Carousel>
+      </div>
+    );
 };
 
 export default FeaturedPosts;

@@ -32,22 +32,22 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
         />
       </div>
       <div className="p-2 py-8">
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           {post.categories.map((category) => (
             <div
-              key={category.slug}
+              key={category.id}
               className="truncate p-4 mr-4 rounded-md w-max text-[1.4rem] xs:text-[1.6rem] leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
             </div>
           ))}
-        </div>
+        </div> */}
         <h1 className="transition duration-700 my-4 cursor-pointer hover:text-pink-600 text-[2.2rem] md:text-[2.5rem] leading-[110%] font-medium">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
-        {/* <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
+        <p className=" text-[1.2rem] text-gray-700 font-normal mb-4">
           {post.excerpt}
-        </p> */}
+        </p>
         <div className="flex items-center text-[1.2rem] sm:text-[1.4rem] w-full">
           <div className="flex items-center relative w-fit md:w-[40%] truncate lg:mb-0 lg:w-auto mr-4">
             <img
@@ -73,7 +73,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
           <div className=" font-medium text-gray-700 text-[1.2rem] sm:text-[1.4rem] dark:text-gray-200 flex items-center  ">
             <CalenderIcon className="mr-4 hidden sm:inline" />
             <span>
-              {moment(post.createdAt).format(
+              {moment(post.publishedAt).format(
                 latest
                   ? "MMM DD, YYYY"
                   : recent || selectedCategory
@@ -101,18 +101,18 @@ export function FirstCategoryPost({ post }) {
         />
       </div>
       <div className="">
-        <div className="flex ">
+        {/* <div className="flex ">
           {post.categories.map((category) => (
             <div
-              key={category.slug}
+              key={category.id}
               className=" text-[1.4rem] xs:text-[1.6rem] leading-[1.2rem] p-4 mr-4 w-max rounded-md bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
             </div>
           ))}
-        </div>
+        </div> */}
         <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-[2.6rem] md:text-[2.8rem] lg:text-[3.5rem] xl:text-[4.5rem]  leading-[115%] font-normal">
-          <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
+          <Link href={`/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
         <p className=" text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-gray-700 dark:text-gray-400 font-normal mb-4">
           {post.excerpt}
@@ -141,7 +141,7 @@ export function FirstCategoryPost({ post }) {
           </div>
           <div className=" font-medium text-gray-700 text-[1.2rem] sm:text-[1.4rem] dark:text-gray-200 flex items-center  ">
             <CalenderIcon className="mr-4 hidden sm:inline" />
-            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+            <span>{moment(post.publishedAt).format("MMM DD, YYYY")}</span>
           </div>
         </div>
       </div>

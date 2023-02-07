@@ -10,9 +10,9 @@ export default function MobileHeader({ mode, setMode }) {
 
   const [menu, setMenu] = useState(false);
 
-  useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-  }, []);
+  // useEffect(() => {
+  //   getCategories().then((newCategories) => setCategories(newCategories));
+  // }, []);
 
   return (
     <div className="md:hidden sticky z-50 h-[10rem] top-[0rem] flex items-end px-5 md:px-10 backdrop-blur-sm">

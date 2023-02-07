@@ -5,7 +5,7 @@ import { toUpperCase } from "../helper/toUpperCase";
 // import { RichText } from "@graphcms/rich-text-react-renderer";
 
 export default function PostDetail({ post }) {
-  console.log(post.content.raw.children);
+  console.log(post.content.json.children);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
@@ -175,7 +175,7 @@ export default function PostDetail({ post }) {
       </div>
 
       <div className="px-4 lg:px-0 text-[1.8rem]">
-        {post.content.raw.children.map((typeObj, index) => {
+        {post.content.json.children.map((typeObj, index) => {
           const children = typeObj.children.map((item, itemIndex) => (
             <React.Fragment key={itemIndex}>
               {getContentFragment(itemIndex, item.text, item)}
