@@ -1,7 +1,4 @@
 import Head from "next/head";
-import { Categories, PostCard, PostWidget } from "../components";
-import { getPosts } from "../services";
-import { FeaturedPosts } from "../sections";
 import WelcomeCard from "../components/WelcomeCard";
 import PostSection from "../components/PostSection";
 
@@ -19,14 +16,6 @@ export default function Home({ posts }) {
     </div>
   );
 }
-
-// export async function getStaticProps() {
-//   const posts = (await getPosts()) || [];
-
-//   return {
-//     props: { posts },
-//   };
-// }
 
 // function findPrimeNumber(num) {
 //   if (num === 1 || num === 2) {

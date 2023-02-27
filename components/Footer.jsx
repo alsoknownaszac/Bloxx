@@ -12,9 +12,10 @@ export default function Footer() {
   return (
     <div className="relative bottom-0 text-[1.4rem] bg-[rgba(235,240,240,1)] dark:bg-[rgba(43,65,67,0.29)] dark:text-white">
       <div className="!container mx-auto px-10 py-6 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center font-[Andika] font-bold">
           copyright <CopyRight size={"2rem"} className="mx-3" />
-          {moment(currentDate).format("YYYY")} spice
+          {moment(currentDate).format("YYYY")}{" "}
+          <span className="  pl-4">Project88</span>
         </div>
         <div className="flex items-center text-[2rem]">
           <LinkedIn className="mx-3" />

@@ -32,7 +32,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
         />
       </div>
       <div className="p-2 py-8">
-        {/* <div className="flex items-center">
+        <div className="flex items-center">
           {post.categories.map((category) => (
             <div
               key={category.id}
@@ -41,7 +41,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
               {toUpperCase(category.name)}
             </div>
           ))}
-        </div> */}
+        </div>
         <h1 className="transition duration-700 my-4 cursor-pointer hover:text-pink-600 text-[2.2rem] md:text-[2.5rem] leading-[110%] font-medium">
           <Link href={`/post/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>
@@ -101,7 +101,7 @@ export function FirstCategoryPost({ post }) {
         />
       </div>
       <div className="">
-        {/* <div className="flex ">
+        <div className="flex ">
           {post.categories.map((category) => (
             <div
               key={category.id}
@@ -110,7 +110,7 @@ export function FirstCategoryPost({ post }) {
               {toUpperCase(category.name)}
             </div>
           ))}
-        </div> */}
+        </div>
         <h1 className="transition duration-700 mt-4 mb-2 cursor-pointer hover:text-pink-600 text-[2.6rem] md:text-[2.8rem] lg:text-[3.5rem] xl:text-[4.5rem]  leading-[115%] font-normal">
           <Link href={`/${post.slug}`}>{toTitleCase(post.title)}</Link>
         </h1>

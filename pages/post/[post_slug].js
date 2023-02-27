@@ -17,7 +17,7 @@ export default function PostDetails() {
   const router = useRouter();
 
   const { post_slug } = router.query;
-  // console.log(post_slug);
+  console.log(post_slug);
 
   if (router.isFallback) {
     return <Loader />;

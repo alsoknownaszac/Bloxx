@@ -34,8 +34,8 @@ export default function Header({ mode, setMode }) {
       <div className="container mx-auto shadow-sm grid grid-cols-12 rounded-lg p-5 items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white">
         <div className="md:float-left col-span-1">
           <Link href="/">
-            <span className="cursor-pointer font-bold md:text-3xl lg:text-4xl ">
-              NoobNotes
+            <span className="font-[Andika] italic cursor-pointer font-bold md:text-3xl lg:text-4xl ">
+              Project88
             </span>
           </Link>
         </div>

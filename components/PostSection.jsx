@@ -5,37 +5,41 @@ import { FirstCategoryPost, PostCard } from "./PostCard";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../query/getCategories";
 import { GET_POSTS } from "../query/getPosts";
+import { GET_POSTS_BY_CATEGORY } from "../query/getPostsByCategory";
+import { useRouter } from "next/router";
 
 export default function PostSection({ latest, recent, selectedCategory }) {
-  // const [categories, setCategories] = useState([]);
-  // const [posts, setPosts] = useState([]);
+  const router = useRouter();
 
   const categoriesQuery = useQuery(GET_CATEGORIES);
   const postsQuery = useQuery(GET_POSTS);
 
-  // console.log(selectedCategory);
-  // console.log(categoriesQuery.data);
-  // console.log(postsQuery.data);
+  const { loading, error, data } = useQuery(GET_POSTS_BY_CATEGORY, {
+    variables: {
+      where: {
+        categories_some: {
+          slug: selectedCategory,
+        },
+      },
+    },
+  });
 
   let filteredCategory;
-  if (selectedCategory === "all") {
-    filteredCategory = postsQuery.data?.posts;
-  } else if (selectedCategory && postsQuery.data?.posts) {
-    filteredCategory = postsQuery.data?.posts.filter(({ categories }) =>
-      categoriesQuery.data?.categories.some(
-        (val) => val.slug === selectedCategory
-      )
-    );
-  } else filteredCategory = postsQuery.data?.posts;
+  if (selectedCategory === "all" && postsQuery.data) {
+    filteredCategory = postsQuery?.data?.posts;
+  } else if (data) {
+    filteredCategory = data?.posts;
+  }
+  // else filteredCategory = postsQuery.data?.posts;
 
-  // let filteredCategory = posts;
-  // console.log(filteredCategory);
-  // console.log(posts);
+  console.log(filteredCategory);
 
-  if (categoriesQuery.loading && postsQuery.loading) return "Loading...";
+  if (loading && categoriesQuery.loading && postsQuery.loading)
+    return "Loading...";
 
-  if (categoriesQuery.error && postsQuery.error)
-    return `Error! ${categoriesQuery.error.message}`;
+  if (error) return `Error! ${error.message}`;
+
+  if (categoriesQuery.error) return `Error! ${categoriesQuery.error.message}`;
 
   if (postsQuery.error) return `Error! ${postsQuery.error.message}`;
 
