@@ -4,15 +4,30 @@ import { toUpperCase } from "../helper/toUpperCase";
 import { FirstCategoryPost, PostCard } from "./PostCard";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../query/getCategories";
-import { GET_POSTS } from "../query/getPosts";
+// import { GET_POSTS } from "../query/getPosts";
 import { GET_POSTS_BY_CATEGORY } from "../query/getPostsByCategory";
 import { useRouter } from "next/router";
+import { GET_POSTS_BY_SEARCH } from "../query/getPostsBySearch";
+import { useSelector } from "react-redux";
+import { searchValue } from "../features/search/searchSlice";
+import { v4 as uuid } from "uuid";
 
 export default function PostSection({ latest, recent, selectedCategory }) {
   const router = useRouter();
 
+  const search = useSelector(searchValue);
+
   const categoriesQuery = useQuery(GET_CATEGORIES);
-  const postsQuery = useQuery(GET_POSTS);
+
+  // const postsQuery = useQuery(GET_POSTS);
+
+  const postsQuery = useQuery(GET_POSTS_BY_SEARCH, {
+    variables: {
+      where: {
+        _search: search.search,
+      },
+    },
+  });
 
   const { loading, error, data } = useQuery(GET_POSTS_BY_CATEGORY, {
     variables: {
@@ -30,9 +45,8 @@ export default function PostSection({ latest, recent, selectedCategory }) {
   } else if (data) {
     filteredCategory = data?.posts;
   }
-  // else filteredCategory = postsQuery.data?.posts;
 
-  console.log(filteredCategory);
+  // console.log(filteredCategory);
 
   if (loading && categoriesQuery.loading && postsQuery.loading)
     return "Loading...";
@@ -53,7 +67,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
           className={`p-2 py-4 w-max hidden md:flex mb-14 columns-[${categoriesQuery.data?.categories.length}] items-center bg-[rgba(242,242,242,1)] dark:bg-[rgba(17,16,16,1)] dark:text-white`}
         >
           {categoriesQuery.data?.categories.map((category) => (
-            <Link key={category.slug} href={`/post/${category.slug}`}>
+            <Link key={uuid()} href={`/post/${category.slug}`}>
               <span className=" text-center font-normal mx-8 cursor-pointer">
                 {toUpperCase(category.name)}
               </span>
@@ -68,7 +82,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
               <FirstCategoryPost
                 post={post}
                 index={index}
-                key={post.title}
+                key={uuid()}
                 latest={latest}
                 recent={recent}
                 selectedCategory={selectedCategory}
@@ -89,7 +103,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
             <PostCard
               post={post}
               index={index}
-              key={post.title}
+              key={uuid()}
               latest={latest}
               recent={recent}
               selectedCategory={selectedCategory}
@@ -102,7 +116,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
                 <PostCard
                   post={post}
                   index={index}
-                  key={post.title}
+                  key={uuid()}
                   latest={latest}
                   recent={recent}
                   selectedCategory={selectedCategory}
@@ -113,12 +127,3 @@ export default function PostSection({ latest, recent, selectedCategory }) {
     </div>
   );
 }
-
-// export async function getStaticProps() {
-//   const posts = (await getPosts()) || [];
-//   const categories = (await getCategories()) || [];
-
-//   return {
-//     props: { posts, categories },
-//   };
-// }

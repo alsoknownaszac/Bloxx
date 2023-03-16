@@ -1,27 +1,20 @@
-import React, {
-  Fragment,
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-} from "react";
+import React, { Fragment, useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { getCategories } from "../services";
 import { toUpperCase } from "../helper/toUpperCase";
 import { RiMoonFill, RiMoonLine, RiSearchLine } from "react-icons/ri";
 import { MdDoubleArrow } from "react-icons/md";
-import { PopOver } from "./PopOver";
 import { Popover, Transition } from "@headlessui/react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../query/getCategories";
+import BasicPopover from "./BasicPopover";
+import { useDispatch, useSelector } from "react-redux";
+import { isDarkMode, switchDarkMode } from "../features/dark/darkSlice";
+import { inputSearch } from "../features/search/searchSlice";
 
-// const categories = [
-//   { name: "react", slug: "react" },
-//   { name: "web dev", slug: "web dev" },
-// ];
+export default function Header() {
+  const toggleDarkMode = useSelector(isDarkMode);
 
-export default function Header({ mode, setMode }) {
-  const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
 
   const { loading, error, data } = useQuery(GET_CATEGORIES);
 
@@ -43,12 +36,45 @@ export default function Header({ mode, setMode }) {
         <MdHeaderTab loading={loading} data={data?.categories} />
         <LgHeaderTab loading={loading} data={data?.categories} />
         <div className=" col-span-2 flex items-center md:ml-auto">
-          <RiSearchLine className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem] mr-16" />
+          <BasicPopover
+            contentStyles="top-[25px] right-0 !w-[220px] !h-fit !rounded-[5px] bg-gray-200 "
+            btn={
+              <RiSearchLine className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem] mr-16" />
+            }
+          >
+            <div className="p-3 text-[16px] shadow-inner shadow-[black] flex items-center justify-between">
+              <code className="flex text-[15px] items-center">
+                [
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+                  />
+                </svg>
+                ]
+              </code>
+              <code className="w-[84%]">
+                <input
+                  type="text"
+                  className=" outline-none bg-transparent w-full"
+                  onChange={({ target }) => dispatch(inputSearch(target.value))}
+                />
+              </code>
+            </div>
+          </BasicPopover>
           <div
             className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem] mr-4"
-            onClick={() => setMode(!mode)}
+            onClick={() => dispatch(switchDarkMode())}
           >
-            {!mode ? <RiMoonLine /> : <RiMoonFill />}
+            {!toggleDarkMode.dark ? <RiMoonLine /> : <RiMoonFill />}
           </div>
         </div>
       </div>
@@ -193,25 +219,3 @@ function MoreHeaderTab({ loading, data }) {
     </Popover>
   );
 }
-
-// import { gql } from "graphql-request";
-// import { cmsClient, hygraph } from "../pages/api/cmsClient";
-
-// const QUERY = gql`
-//   {
-//     categories {
-//       name
-//       slug
-//     }
-//   }
-// `;
-
-// export async function getStaticProps() {
-//   const { posts } = await hygraph.request(QUERY);
-
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }

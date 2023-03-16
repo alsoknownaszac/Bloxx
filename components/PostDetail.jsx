@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment";
 import { AiFillCalendar as CalenderIcon } from "react-icons/ai";
 import { toUpperCase } from "../helper/toUpperCase";
+import { v4 as uuid } from "uuid";
+
 // import { RichText } from "@graphcms/rich-text-react-renderer";
 
 export default function PostDetail({ post }) {
@@ -27,10 +29,10 @@ export default function PostDetail({ post }) {
             className="text-blue-300 hover:underline !hover:underline-offset-8 cursor-pointer"
             target={obj.openInNewTab && "_blank"}
             href={obj.href}
-            key={index}
+            key={uuid()}
           >
-            {obj.children.map((item, i) => (
-              <React.Fragment key={i}>{item.text}</React.Fragment>
+            {obj.children.map((item) => (
+              <React.Fragment key={uuid()}>{item.text}</React.Fragment>
             ))}
           </a>
         );
@@ -41,24 +43,24 @@ export default function PostDetail({ post }) {
       case "heading-three":
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
+            {modifiedText.map((item) => (
+              <React.Fragment key={uuid()}>{item}</React.Fragment>
             ))}
           </h3>
         );
       case "paragraph":
         return (
           <p key={index} className="mb-8">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
+            {modifiedText.map((item) => (
+              <React.Fragment key={uuid()}>{item}</React.Fragment>
             ))}
           </p>
         );
       case "heading-four":
         return (
           <h4 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
+            {modifiedText.map((item) => (
+              <React.Fragment key={uuid()}>{item}</React.Fragment>
             ))}
           </h4>
         );
@@ -66,7 +68,7 @@ export default function PostDetail({ post }) {
         return (
           <img
             className="mb-8"
-            key={index}
+            key={uuid()}
             alt={obj.title}
             height={obj.height}
             width={obj.width}
@@ -88,7 +90,7 @@ export default function PostDetail({ post }) {
         return (
           <blockquote className="bg-[#f1e7e75d] p-4 rounded-md mb-8">
             {obj.children.map((quote) => (
-              <React.Fragment key={quote.text}>{quote.text}</React.Fragment>
+              <React.Fragment key={uuid()}>{quote.text}</React.Fragment>
             ))}
           </blockquote>
         );
@@ -97,7 +99,7 @@ export default function PostDetail({ post }) {
           <pre className="mb-8 pre max-w-full p-2 whitespace-pre-wrap">
             <code className="code">
               {obj.children.map((code) => (
-                <React.Fragment key={code.text}>{code.text}</React.Fragment>
+                <React.Fragment key={uuid()}>{code.text}</React.Fragment>
               ))}
             </code>
           </pre>
@@ -105,10 +107,10 @@ export default function PostDetail({ post }) {
       case "bulleted-list":
         return (
           <ul className="list-disc pl-12 mb-8 list-outside ">
-            {obj.children.map((listItem, i) => {
+            {obj.children.map((listItem) => {
               let { text } = ListDisplay(listItem);
               return (
-                <li className="pl-2 mb-4" key={i}>
+                <li className="pl-2 mb-4" key={uuid()}>
                   <span>{text}</span>
                 </li>
               );
@@ -118,10 +120,10 @@ export default function PostDetail({ post }) {
       case "numbered-list":
         return (
           <ol className="list-decimal pl-10 mb-8 list-outside ">
-            {obj.children.map((listItem, i) => {
+            {obj.children.map((listItem) => {
               let { text } = ListDisplay(listItem);
               return (
-                <li className="pl-4 mb-4" key={i}>
+                <li className="pl-4 mb-4" key={uuid()}>
                   <span>{text}</span>
                 </li>
               );
@@ -177,7 +179,7 @@ export default function PostDetail({ post }) {
       <div className="px-4 lg:px-0 text-[1.8rem]">
         {post.content.json.children.map((typeObj, index) => {
           const children = typeObj.children.map((item, itemIndex) => (
-            <React.Fragment key={itemIndex}>
+            <React.Fragment key={uuid()}>
               {getContentFragment(itemIndex, item.text, item)}
             </React.Fragment>
           ));
@@ -197,10 +199,10 @@ export default function PostDetail({ post }) {
 
 function ListDisplay(listItem) {
   let text;
-  listItem.children.map((listItemChild, idx) => (
-    <React.Fragment key={idx}>
-      {listItemChild.children.map((item, index) => (
-        <React.Fragment key={index}>{(text = item.text)}</React.Fragment>
+  listItem.children.map((listItemChild) => (
+    <React.Fragment key={uuid()}>
+      {listItemChild.children.map((item) => (
+        <React.Fragment key={uuid()}>{(text = item.text)}</React.Fragment>
       ))}
     </React.Fragment>
   ));

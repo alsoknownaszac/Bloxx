@@ -6,6 +6,7 @@ import { BsDot } from "react-icons/bs";
 import { toUpperCase } from "../helper/toUpperCase";
 import { toTitleCase } from "../helper/toTitleCase";
 import { PopOver } from "./PopOver";
+import { v4 as uuid } from "uuid";
 
 export function PostCard({ post, latest, recent, selectedCategory }) {
   return (
@@ -35,7 +36,7 @@ export function PostCard({ post, latest, recent, selectedCategory }) {
         <div className="flex items-center">
           {post.categories.map((category) => (
             <div
-              key={category.id}
+              key={uuid()}
               className="truncate p-4 mr-4 rounded-md w-max text-[1.4rem] xs:text-[1.6rem] leading-[1.2rem] bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
@@ -104,7 +105,7 @@ export function FirstCategoryPost({ post }) {
         <div className="flex ">
           {post.categories.map((category) => (
             <div
-              key={category.id}
+              key={uuid()}
               className=" text-[1.4rem] xs:text-[1.6rem] leading-[1.2rem] p-4 mr-4 w-max rounded-md bg-[rgba(66,172,147,0.17)]"
             >
               {toUpperCase(category.name)}
