@@ -4,15 +4,14 @@ import { Fragment } from "react";
 
 export default function BasicPopover(props) {
   return (
-    <div className={`w-full ${props.className}`}>
+    <div className={`px-4 ${props.className}`}>
       <Popover className={` ${props.popoverStyles} relative`}>
         {({ open }) => (
           <div>
             <Popover.Button
               className={` ${props.btnStyles}
-                  ${
-                    open ? "" : "text-opacity-90"
-                  } flex items-center hover:text-opacity-100 focus:outline-none`}
+                  ${open ? "" : "text-opacity-90"}
+                   group text-base font-medium hover:text-opacity-100 focus:outline-none`}
             >
               {props.btn}
             </Popover.Button>
@@ -26,7 +25,7 @@ export default function BasicPopover(props) {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel
-                className={`z-10 absolute transform -translate-x-[15px] -translate-y-[15px] overflow-hidden rounded-[5px] shadow-lg ring-1 ring-black ring-opacity-5  ${props.contentStyles} `}
+                className={`w-[220px] z-10 absolute transform lg:-translate-x-[15px] lg:-translate-y-[15px] overflow-hidden rounded-[5px] shadow-lg ring-1 ring-black ring-opacity-5  ${props.contentStyles} `}
               >
                 {props.children}
               </Popover.Panel>

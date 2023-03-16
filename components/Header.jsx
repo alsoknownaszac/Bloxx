@@ -6,10 +6,10 @@ import { MdDoubleArrow } from "react-icons/md";
 import { Popover, Transition } from "@headlessui/react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../query/getCategories";
-import BasicPopover from "./BasicPopover";
 import { useDispatch, useSelector } from "react-redux";
 import { isDarkMode, switchDarkMode } from "../features/dark/darkSlice";
 import { inputSearch } from "../features/search/searchSlice";
+import BasicPopover from "./BasicPopover";
 
 export default function Header() {
   const toggleDarkMode = useSelector(isDarkMode);
@@ -35,11 +35,11 @@ export default function Header() {
         <div className="col-span-1"></div>
         <MdHeaderTab loading={loading} data={data?.categories} />
         <LgHeaderTab loading={loading} data={data?.categories} />
-        <div className=" col-span-2 flex items-center md:ml-auto">
+        <div className=" col-span-2 flex items-center gap-16 md:ml-auto">
           <BasicPopover
             contentStyles="top-[25px] right-0 !w-[220px] !h-fit !rounded-[5px] bg-gray-200 "
             btn={
-              <RiSearchLine className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem] mr-16" />
+              <RiSearchLine className="cursor-pointer md:text-[1.5rem] lg:text-[1.7rem]" />
             }
           >
             <div className="p-3 text-[16px] shadow-inner shadow-[black] flex items-center justify-between">
