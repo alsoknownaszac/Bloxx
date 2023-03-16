@@ -48,8 +48,11 @@ export default function PostSection({ latest, recent, selectedCategory }) {
 
   // console.log(filteredCategory);
 
-  if (loading && categoriesQuery.loading && postsQuery.loading)
-    return "Loading...";
+  if (loading) return "Loading...";
+
+  if (categoriesQuery.loading) return "cat Loading...";
+
+  if (postsQuery.loading) return "post Loading...";
 
   if (error) return `Error! ${error.message}`;
 
