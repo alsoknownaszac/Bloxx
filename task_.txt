@@ -1,2 +1,2 @@
-- r4eplace all static keys with uuid
+- replace all static keys with uuid
 - loading spinner, empty state animations

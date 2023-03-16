@@ -6,13 +6,13 @@ export default function Home({ posts }) {
   return (
     <div className="">
       <Head>
-        <title>NoobNotes blog exploring creativity with elegance</title>
+        <title>Project88 blog exploring creativity with elegance</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <WelcomeCard />
       {/* <FeaturedPosts /> */}
-      <PostSection latest />
-      <PostSection recent />
+      <PostSection latest home homeSearch />
+      <PostSection recent home />
     </div>
   );
 }

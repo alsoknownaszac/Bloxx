@@ -12,7 +12,13 @@ import { useSelector } from "react-redux";
 import { searchValue } from "../features/search/searchSlice";
 import { v4 as uuid } from "uuid";
 
-export default function PostSection({ latest, recent, selectedCategory }) {
+export default function PostSection({
+  latest,
+  recent,
+  selectedCategory,
+  home,
+  homeSearch,
+}) {
   const router = useRouter();
 
   const search = useSelector(searchValue);
@@ -40,7 +46,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
   });
 
   let filteredCategory;
-  if (selectedCategory === "all" && postsQuery.data) {
+  if ((selectedCategory === "all" || homeSearch) && postsQuery.data) {
     filteredCategory = postsQuery?.data?.posts;
   } else if (data) {
     filteredCategory = data?.posts;
@@ -101,7 +107,7 @@ export default function PostSection({ latest, recent, selectedCategory }) {
             : null
         } `}
       >
-        {!selectedCategory &&
+        {home &&
           filteredCategory?.map((post, index) => (
             <PostCard
               post={post}
